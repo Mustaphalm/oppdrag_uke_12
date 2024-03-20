@@ -15,6 +15,23 @@ CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
 
 -- -----------------------------------------------------
+-- Table `mydb`.`tickets`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`tickets` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`tickets` (
+  `idtickets` INT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `description` VARCHAR(45) NOT NULL,
+  `status` ENUM('Åpen', 'Lukket', 'Pågår') NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  `category` VARCHAR(45) NOT NULL,
+  `created_at` VARCHAR(45) NULL,
+  PRIMARY KEY (`idtickets`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `mydb`.`kunde`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mydb`.`kunde` ;
@@ -24,28 +41,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`kunde` (
   `epost` VARCHAR(45) NULL,
   `fornavn` VARCHAR(45) NULL,
   `passord` VARCHAR(45) NULL,
+  `beskrivelse av problem` VARCHAR(255) NULL,
   PRIMARY KEY (`idkunde`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`tickets`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`tickets` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`tickets` (
-  `idtickets` INT NOT NULL,
-  `kundeid` INT NULL,
-  `email` VARCHAR(255) NULL,
-  `description` VARCHAR(45) NULL,
-  `status` VARCHAR(255) NULL,
-  PRIMARY KEY (`idtickets`),
-  INDEX `fk_tickets_kunde_idx` (`kundeid` ASC) VISIBLE,
-  CONSTRAINT `fk_tickets_kunde`
-    FOREIGN KEY (`kundeid`)
-    REFERENCES `mydb`.`kunde` (`idkunde`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -62,6 +59,36 @@ CREATE TABLE IF NOT EXISTS `mydb`.`innhold` (
   INDEX `fk_innhold_tickets1_idx` (`ticketid` ASC) VISIBLE,
   CONSTRAINT `fk_innhold_tickets1`
     FOREIGN KEY (`ticketid`)
+    REFERENCES `mydb`.`tickets` (`idtickets`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`saksnummer`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`saksnummer` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`saksnummer` (
+  `idsaksnummer` INT NOT NULL,
+  PRIMARY KEY (`idsaksnummer`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Users`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`Users` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`Users` (
+  `idUsers` INT NULL,
+  `username` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `role` ENUM('Administarator', 'Begrenset tilgang') NOT NULL,
+  PRIMARY KEY (`idUsers`),
+  CONSTRAINT `fk_Users_tickets1`
+    FOREIGN KEY (`idUsers`)
     REFERENCES `mydb`.`tickets` (`idtickets`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
