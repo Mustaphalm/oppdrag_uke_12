@@ -1,0 +1,73 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`kunde`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`kunde` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`kunde` (
+  `idkunde` INT NOT NULL AUTO_INCREMENT,
+  `epost` VARCHAR(45) NULL,
+  `fornavn` VARCHAR(45) NULL,
+  `passord` VARCHAR(45) NULL,
+  PRIMARY KEY (`idkunde`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`tickets`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`tickets` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`tickets` (
+  `idtickets` INT NOT NULL,
+  `kundeid` INT NULL,
+  `email` VARCHAR(255) NULL,
+  `description` VARCHAR(45) NULL,
+  `status` VARCHAR(255) NULL,
+  PRIMARY KEY (`idtickets`),
+  INDEX `fk_tickets_kunde_idx` (`kundeid` ASC) VISIBLE,
+  CONSTRAINT `fk_tickets_kunde`
+    FOREIGN KEY (`kundeid`)
+    REFERENCES `mydb`.`kunde` (`idkunde`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`innhold`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`innhold` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`innhold` (
+  `idinnhold` INT NOT NULL AUTO_INCREMENT,
+  `ticketid` INT NULL,
+  `innhold` VARCHAR(45) NULL,
+  PRIMARY KEY (`idinnhold`),
+  INDEX `fk_innhold_tickets1_idx` (`ticketid` ASC) VISIBLE,
+  CONSTRAINT `fk_innhold_tickets1`
+    FOREIGN KEY (`ticketid`)
+    REFERENCES `mydb`.`tickets` (`idtickets`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
