@@ -1,0 +1,20 @@
+MariaDB [oppdrag_uke_12]> INSERT INTO Users (username, password, role) VALUES ('user1', 'password1', 'Administrator');
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [oppdrag_uke_12]> INSERT INTO Users (username, password, role) VALUES ('user2', 'password2', 'Begrenset tilgang');
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [oppdrag_uke_12]> select * from Users;
++---------+--------------+-----------+-------------------+
+| user_id | username     | password  | role              |
++---------+--------------+-----------+-------------------+
+|       1 | admin        | adminpass | Administrator     |
+|       2 | limited_user | userpass  | Begrenset tilgang |
+|       3 | user1        | password1 | Administrator     |
+|       4 | user2        | password2 | Begrenset tilgang |
++---------+--------------+-----------+-------------------+
+4 rows in set (0.007 sec)
+
+MariaDB [oppdrag_uke_12]> Update Users set role = 'Begrenset tilgang' where username = 'user1'
+
+
