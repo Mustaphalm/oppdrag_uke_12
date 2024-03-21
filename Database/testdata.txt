@@ -1,3 +1,5 @@
+//Kommandoer 
+
 MariaDB [oppdrag_uke_12]> INSERT INTO Users (username, password, role) VALUES ('user1', 'password1', 'Administrator');
 Query OK, 1 row affected (0.004 sec)
 
@@ -18,3 +20,19 @@ MariaDB [oppdrag_uke_12]> select * from Users;
 MariaDB [oppdrag_uke_12]> Update Users set role = 'Begrenset tilgang' where username = 'user1'
 
 
+Her er kommer eksempeler på hvordan testdata kan funke: 
+
+Brukere (Users):
+
+Brukernavn: admin, Passord: adminpass, Rolle: Administrator
+Brukernavn: limited_user, Passord: userpass, Rolle: Begrenset tilgang
+Henvendelser (Tickets):
+
+Navn: Mustapha, E-post: Mustapha@example.com, Beskrivelse: Trenger hjelp med fakturering, Kategori: Faktura, Status: Åpen, Opprettet: 2024-03-18 10:00:00
+Navn: Ole petter, E-post: Olepetter@example.com, Beskrivelse: Har problemer med programvaren, Kategori: Support, Status: Pågår, Opprettet: 2024-03-18 11:30:00
+Navn: jostein, E-post: jostein@example.com, Beskrivelse: Ønsker informasjon om vedlikeholdsavtaler, Kategori: Vedlikehold, Status: Lukket, Opprettet: 2024-03-18 13:45:00
+Innhold (Innhold):
+
+Ticket ID: 1, Innhold: "Vi jobber med saken og vil oppdatere deg snart."
+Ticket ID: 2, Innhold: "Din forespørsel er løst. Vennligst kontakt oss hvis du trenger mer hjelp."
+Ticket ID: 3, innhold: "Vi kunne dessverre ikke løse saken, vi avslutter herved saken"
