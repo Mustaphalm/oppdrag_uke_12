@@ -29,8 +29,8 @@
         <option value="Programvarelisens">Programvarelisens</option>
     </select><br><br>
 
-    <label for="saksnummer">Saksnummer:</label><br>
-    <input type="text" id="saksnummer" name="saksnummer" required><br><br>
+    <!-- <label for="saksnummer">Saksnummer:</label><br>
+    <input type="text" id="saksnummer" name="saksnummer" required><br><br> -->
 
     <input type="submit" value="Legg til henvendelse.">
 </form>
@@ -45,28 +45,25 @@ if (!$conn) {
 
 // Sjekker om skjemaet er sendt
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sjekker om "saksnummer" er satt og er et gyldig tall
-    if (isset($_POST['saksnummer']) && is_numeric($_POST['saksnummer'])) {
-        // Henter og rens innsendte data
-        $name = mysqli_real_escape_string($conn, $_POST['name']);
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $description = mysqli_real_escape_string($conn, $_POST['description']);
-        $category = mysqli_real_escape_string($conn, $_POST['category']);
-        $status = 'Åpen'; // Setter statusen til 'Åpen'
-        $saksnummer = mysqli_real_escape_string($conn, $_POST['saksnummer']); // Henter saksnummeret
+    // Henter og rens innsendte data
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $description = mysqli_real_escape_string($conn, $_POST['description']);
+    $category = mysqli_real_escape_string($conn, $_POST['category']);
+    $status = 'Åpen'; // Setter statusen til 'Åpen'
 
-        // SQL-spørring for å sette inn henvendelse
-        $sql = "INSERT INTO Tickets (name, email, description, category, status, saksnummer)
-                VALUES ('$name', '$email', '$description', '$category', '$status', '$saksnummer')";
+    // Genererer et unikt saksnummer ved å bruke timestamp
+    $saksnummer = time(); // Dette vil gi et tall basert på nåværende tidspunkt i millisekunder
 
-        // Utfører spørringen og sjekker resultatet
-        if (mysqli_query($conn, $sql)) {
-            echo "Henvendelse lagt til!";
-        } else {
-            echo "Feil ved innsetting av henvendelse: " . mysqli_error($conn);
-        }
+    // SQL-spørring for å sette inn henvendelse
+    $sql = "INSERT INTO Tickets (name, email, description, category, status, saksnummer)
+            VALUES ('$name', '$email', '$description', '$category', '$status', '$saksnummer')";
+
+    // Utfører spørringen og sjekker resultatet
+    if (mysqli_query($conn, $sql)) {
+        echo "Henvendelse lagt til! Saksnummer: " . $saksnummer;
     } else {
-        echo "Feil: Saksnummer må være et gyldig tall.";
+        echo "Feil ved innsetting av henvendelse: " . mysqli_error($conn);
     }
 }
 ?>
