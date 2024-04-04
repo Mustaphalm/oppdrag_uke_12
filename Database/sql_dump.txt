@@ -20,13 +20,15 @@ USE `mydb` ;
 DROP TABLE IF EXISTS `mydb`.`tickets` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`tickets` (
-  `idtickets` INT NULL,
+  `ticket_id` INT NULL,
   `email` VARCHAR(255) NOT NULL,
   `description` VARCHAR(45) NOT NULL,
-  `status` ENUM('Åpen', 'Lukket', 'Pågår') NOT NULL,
+  `status` VARCHAR(255) NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   `category` VARCHAR(45) NOT NULL,
-  `created_at` INT NULL,
+  `user_id` INT NOT NULL,
+  `saksnummer` INT NOT NULL,
+  `timestamp` TIMESTAMP NOT NULL,
   PRIMARY KEY (`idtickets`))
 ENGINE = InnoDB;
 
@@ -94,10 +96,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `mydb`.`Users` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Users` (
-  `idUsers` INT NULL,
+  `idUsers` INT NULL AUTO_INCREMENT,
   `username` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
-  `role` INT NOT NULL,
+  `role` ENUM('Administrator', 'Begrenset tilgang') NULL,
   PRIMARY KEY (`idUsers`),
   INDEX `fk_Users_Rolle1_idx` (`role` ASC) VISIBLE,
   CONSTRAINT `fk_Users_tickets1`
