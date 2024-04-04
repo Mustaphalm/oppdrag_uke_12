@@ -1,3 +1,4 @@
+
 <?php
     // Starte økten for å lagre brukerdata
     session_start();
@@ -77,4 +78,8 @@
 </body>
 </html>
 
+                
+            </form>
+        </div>
+    </main>
 
