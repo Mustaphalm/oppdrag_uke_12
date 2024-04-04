@@ -59,6 +59,10 @@
             echo "Feil ved henting av status: " . mysqli_error($conn);
         }
     }
+
+
     ?>
 </body>
 </html>
+
+

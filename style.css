@@ -128,6 +128,24 @@ input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
+button[type="submit"] {
+    width: 50%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
 .error-message {
     color: red;
     margin-top: 10px;
