@@ -28,7 +28,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* style for index */
 
 /* Stil for index.php */
 
@@ -83,14 +82,7 @@ th {
     background-color: #f2f2f2;
 }
 
-a {
-    color: #007bff;
-    text-decoration: none;
-}
 
-a:hover {
-    text-decoration: underline;
-}
 
 
 /* Style for admin_logg_inn.php */

@@ -73,13 +73,16 @@
             <!-- Knapp for å sende inn logindata -->
             <input type="submit" value="Logg Inn">
         </form>
+
         <a href="registrering.php" class="back-link"> Ikke en kunde? Registrer her</a>
-    </div>
+
+        <!-- logg ut -->
+
+    <form action="admin_logg_ut.php" method="post">
+        <button type="submit"> Logg ut</button>
+</form>
+</div>
+
+
 </body>
 </html>
-
-                
-            </form>
-        </div>
-    </main>
-
