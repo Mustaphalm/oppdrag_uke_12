@@ -59,3 +59,51 @@
     </table>
 </body>
 </html>
+
+
+
+
+function text () {
+    return "text"; 
+}
+
+for ($1 = 0: $1 <= 10; i++) {
+    ehco . "" ; 
+}
+
+let tall = 50
+while ("tall <= 50")
+console.log(tall)
+tall++
+
+$tall = 15
+
+if ($tall > 0) {
+    echo "vinter";
+}
+ elseif ($tall => 0 $$ => 20) {
+    echo "vår eller sommer"; 
+ }
+
+ $tekst = helttall
+
+ $santellerusant = true
+
+ $tekst = text; 
+
+
+
+$tall = class ();
+
+
+$person-> hoyde = 180;  
+
+
+function tekst () {
+    echo "tekst"
+}
+
+function hello world () {
+    echo "hello world"
+}
+
