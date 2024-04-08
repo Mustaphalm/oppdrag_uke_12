@@ -14,11 +14,6 @@ echo "<p> Velkommen, " . $_SESSION['admin_username'] . "!</p>";
 
 // Vis oversikt over henvendelser
 
-
-
-
-
-
 $sql = "SELECT * FROM tickets";
 $result = mysqli_query($conn, $sql);
 
@@ -49,7 +44,6 @@ if ($result && mysqli_num_rows($result) > 0 ){
     <link rel="stylesheet" href="style.css">
 
     <a href="index.php">Tilbake til hovedsiden</a>
-
 
 
 
